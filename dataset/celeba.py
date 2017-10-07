@@ -32,7 +32,7 @@ def _resize_augment(args):
         translation_sigma=2.00, scale_sigma=0.01, rotation_sigma=0.01,
         gamma_sigma=0.05, contrast_sigma=0.05, hue_sigma=0.01
     )
-    img = img_augment(img, *augment_params, border_mode='nearest')
+    img = img_augment(img, *augment_params)
     img = _resize((img, rescale_size, bbox))
     return img
 
