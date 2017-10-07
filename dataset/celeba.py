@@ -20,7 +20,7 @@ def _resize(args):
     # Smooth image before resize to avoid moire patterns
     scale = img.shape[0] / float(rescale_size)
     sigma = np.sqrt(scale) / 2.0
-    img = filters.gaussian_filter(img, sigma=sigma, multichannel=True)
+    img = filters.gaussian(img, sigma=sigma, multichannel=True)
     img = transform.resize(img, (rescale_size, rescale_size, 3), order=3)
     img = (img*255).astype(np.uint8)
     return img
