@@ -16,7 +16,7 @@ def run():
 
     img_size = 64
     epoch_size = 125
-    batch_size = 64
+    batch_size = 16
     # n_augment = int(6e5)
     n_augment = 0
     print('preprocessing dataset')
