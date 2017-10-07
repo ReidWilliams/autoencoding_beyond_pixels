@@ -3,6 +3,7 @@ import numpy as np
 import joblib
 from skimage import transform, filters
 import deeppy as dp
+import .celeba_data import CelebA
 
 from .augment import (img_augment, sample_img_augment_params, AugmentedFeed,
                       SupervisedAugmentedFeed)
@@ -41,7 +42,7 @@ def celeba_imgs(img_size=64, bbox=(40, 218-30, 15, 178-15), img_idxs=None,
                 n_augment=0):
     if bbox[1] - bbox[0] != bbox[3] - bbox[2]:
         raise ValueError('Image is not square')
-    dataset = dp.dataset.CelebA()
+    dataset = CelebA()
     if img_idxs is None:
         img_idxs = list(range(dataset.n_imgs))
     if n_augment == 0:
@@ -64,7 +65,7 @@ def celeba_imgs(img_size=64, bbox=(40, 218-30, 15, 178-15), img_idxs=None,
 
 def feeds(img_size, batch_size, epoch_size, n_augment=int(6e5),
           with_attributes=False, split='val'):
-    dataset = dp.dataset.CelebA()
+    dataset = CelebA()
     if split == 'val':
         train_idxs = dataset.train_idxs
         test_idxs = dataset.val_idxs
