@@ -80,6 +80,7 @@ def train(model, output_dir, train_feed, test_feed, lr_start=0.01,
                                     margin=gan_margin)
     try:
         for e in range(n_epochs):
+            print('epoch %i' % e)
             model.phase = 'train'
             model.setup(*train_feed.shapes)
             learn_rule.learn_rate = annealer.value(e) / train_feed.batch_size
