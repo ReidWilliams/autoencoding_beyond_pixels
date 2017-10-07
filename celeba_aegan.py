@@ -15,7 +15,7 @@ def run():
     experiment_name = 'celeba'
 
     img_size = 64
-    epoch_size = 250
+    epoch_size = 125
     batch_size = 64
     # n_augment = int(6e5)
     n_augment = 0
