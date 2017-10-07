@@ -2,7 +2,7 @@ import os
 import logging
 import numpy as np
 from PIL import Image
-from deeppy.util import dataset_home, download, checksum, archive_extract, checkpoint
+from deeppy.dataset.util import dataset_home, download, checksum, archive_extract, checkpoint
 
 
 log = logging.getLogger(__name__)
