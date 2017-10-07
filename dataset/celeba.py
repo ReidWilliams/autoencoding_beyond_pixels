@@ -3,7 +3,7 @@ import numpy as np
 import joblib
 from skimage import transform, filters
 import deeppy as dp
-import .celeba_data import CelebA
+from .celeba_data import CelebA
 
 from .augment import (img_augment, sample_img_augment_params, AugmentedFeed,
                       SupervisedAugmentedFeed)
