@@ -18,11 +18,13 @@ def run():
     epoch_size = 250
     batch_size = 64
     n_augment = int(6e5)
+    print('preprocessing dataset')
     train_feed, test_feed = dataset.celeba.feeds(
         img_size, split='test', batch_size=batch_size, epoch_size=epoch_size,
         n_augment=n_augment,
     )
     n_hidden = 128
+    print('building model')
     model, experiment_name = aegan.build_model(
         experiment_name, img_size, n_hidden=n_hidden, recon_depth=9,
         recon_vs_gan_weight=1e-6, real_vs_gen_weight=0.5,
