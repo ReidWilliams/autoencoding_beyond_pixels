@@ -17,7 +17,8 @@ def run():
     img_size = 64
     epoch_size = 250
     batch_size = 64
-    n_augment = int(6e5)
+    # n_augment = int(6e5)
+    n_augment = 0
     print('preprocessing dataset')
     train_feed, test_feed = dataset.celeba.feeds(
         img_size, split='test', batch_size=batch_size, epoch_size=epoch_size,
