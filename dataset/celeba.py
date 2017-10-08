@@ -40,6 +40,7 @@ def _resize_augment(args):
 @mem.cache
 def celeba_imgs(img_size=64, bbox=(40, 218-30, 15, 178-15), img_idxs=None,
                 n_augment=0):
+    print('preprocessing with n_augment = %i' % n_augment)
     if bbox[1] - bbox[0] != bbox[3] - bbox[2]:
         raise ValueError('Image is not square')
     dataset = CelebA()

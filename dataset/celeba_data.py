@@ -23,7 +23,6 @@ _ATTRIBUTES_URL = (
     '225788ff6c9d0b96dc21144147456e0388195617'
 )
 
-
 class CelebA(object):
     '''
     Large-scale CelebFaces Attributes (CelebA) Dataset [1].
