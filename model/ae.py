@@ -3,7 +3,7 @@ import cudarray as ca
 import deeppy as dp
 import deeppy.expr as ex
 
-from util import ScaleGradient
+from .util import ScaleGradient
 
 
 class NLLNormal(ex.nnet.loss.Loss):

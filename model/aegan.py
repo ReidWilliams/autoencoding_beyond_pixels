@@ -4,8 +4,8 @@ import cudarray as ca
 import deeppy as dp
 import deeppy.expr as ex
 
-from util import ScaleGradient, WeightedParameter
-from ae import NLLNormal
+from .util import ScaleGradient, WeightedParameter
+from .ae import NLLNormal
 
 
 class AEGAN(dp.base.Model, dp.base.CollectionMixin):
