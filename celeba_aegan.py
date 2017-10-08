@@ -19,18 +19,33 @@ def run():
     batch_size = 128
     # n_augment = int(6e5)
     n_augment = 0
+
+    # set to absolute path 
+    # to start training with an existing pickled model
+    model_path = '/home/ec2-user/autoencoding_beyond_pixels/out/1.celeba_reconganweight1.0e-06_recondepth9_nodisaerecon/arch.pickle'
+    # set to True to load existing model and use it
+    use_existing_model = True
+
     print('preprocessing dataset')
     train_feed, test_feed = dataset.celeba.feeds(
         img_size, split='test', batch_size=batch_size, epoch_size=epoch_size,
         n_augment=n_augment,
     )
     n_hidden = 128
-    print('building model')
-    model, experiment_name = aegan.build_model(
-        experiment_name, img_size, n_hidden=n_hidden, recon_depth=9,
-        recon_vs_gan_weight=1e-6, real_vs_gen_weight=0.5,
-        discriminate_ae_recon=False, discriminate_sample_z=True,
-    )
+
+    model = None
+    if (use_existing_model):
+        print('unpickling model at %s' % model_path)
+        with open(model_path, 'rb') as f:
+            model = pickle.load(f)
+    else:
+        print('building model')
+        model, experiment_name = aegan.build_model(
+            experiment_name, img_size, n_hidden=n_hidden, recon_depth=9,
+            recon_vs_gan_weight=1e-6, real_vs_gen_weight=0.5,
+            discriminate_ae_recon=False, discriminate_sample_z=True,
+        )
+        
     print('experiment_name: %s' % experiment_name)
     output_dir = os.path.join('out', experiment_name)
     aegan.train(
