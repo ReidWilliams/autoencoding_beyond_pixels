@@ -14,7 +14,7 @@ from dataset.util import img_transform, img_inverse_transform
 def run():
     experiment_name = 'celeba'
 
-    img_size = 128
+    img_size = 64
     epoch_size = 250
     batch_size = 128
     # n_augment = int(6e5)
