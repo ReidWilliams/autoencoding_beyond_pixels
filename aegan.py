@@ -1,4 +1,6 @@
 import os
+import time
+from datetime import timedelta
 import numpy as np
 import scipy as sp
 import deeppy as dp
@@ -78,9 +80,15 @@ def train(model, output_dir, train_feed, test_feed, lr_start=0.01,
     annealer = dp.GammaAnnealer(lr_start, lr_stop, n_epochs, gamma=lr_gamma)
     trainer = aegan.GradientDescent(model, train_feed, learn_rule,
                                     margin=gan_margin)
+
+    time_last = time.time()
     try:
         for e in range(n_epochs):
-            print('epoch %i' % e)
+            now = time.time()
+            time_delta = str(timedelta(now - time_last))
+            print('Starting epoch %i. Last epoch took %s' % (e, time_delta))
+            time_last = now
+            
             model.phase = 'train'
             model.setup(*train_feed.shapes)
             learn_rule.learn_rate = annealer.value(e) / train_feed.batch_size
