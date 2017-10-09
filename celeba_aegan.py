@@ -22,7 +22,7 @@ def run():
 
     # set to absolute path 
     # to start training with an existing pickled model
-    model_path = '/home/ec2-user/autoencoding_beyond_pixels/out/1.celeba_reconganweight1.0e-06_recondepth9_nodisaerecon/arch.pickle'
+    model_path = '/home/ec2-user/autoencoding_beyond_pixels/out/2.celeba/arch.pickle'
     # set to True to load existing model and use it
     use_existing_model = True
 
