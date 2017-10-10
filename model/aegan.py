@@ -180,6 +180,7 @@ class GradientDescent(dp.GradientDescent):
 
     def train_epoch(self):
         batch_costs = []
+        print('epoch idx is %i' % self.feed.epoch_idx)
         for batch in self.feed.batches():
             real_cost, fake_cost, encoder = self.model.update(*batch)
             batch_costs.append((real_cost, fake_cost, encoder))
