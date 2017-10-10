@@ -60,9 +60,11 @@ def build_model(experiment_name, img_size, n_hidden=128, recon_depth=9,
     return model, experiment_name
 
 
-def train(model, output_dir, train_feed, test_feed, lr_start=0.01,
+def train(model, output_dir, train_feed, test_feed, epoch_start=0, lr_start=0.01,
           lr_stop=0.00001, lr_gamma=0.75, n_epochs=150, gan_margin=0.35):
     n_hidden = model.latent_encoder.n_out
+    '''epoch_start to continue training at a given epoch. Causes the model to jump
+    forward in the training data feed'''
 
     # For plotting
     original_x = np.array(test_feed.batches().next()[0])
@@ -80,13 +82,13 @@ def train(model, output_dir, train_feed, test_feed, lr_start=0.01,
     annealer = dp.GammaAnnealer(lr_start, lr_stop, n_epochs, gamma=lr_gamma)
     trainer = aegan.GradientDescent(model, train_feed, learn_rule,
                                     margin=gan_margin)
-
+    trainer.feed.epoch_idx = epoch_start
     time_last = time.time()
     try:
         for e in range(n_epochs):
             now = time.time()
-            time_delta = str(timedelta(now - time_last))
-            print('Starting epoch %i. Last epoch took %s' % (e, time_delta))
+            time_delta = str(timedelta(seconds=(now - time_last)))
+            print('Starting epoch %i. Last epoch took %s' % (trainer.feed.epoch_idx, time_delta))
             time_last = now
             
             model.phase = 'train'
