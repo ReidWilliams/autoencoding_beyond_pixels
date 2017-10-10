@@ -25,6 +25,8 @@ def run():
     model_path = '/home/ec2-user/autoencoding_beyond_pixels/out/2.celeba/arch.pickle'
     # set to True to load existing model and use it
     use_existing_model = True
+    # set to epoch index where you want to restart training
+    epoch_start = 101
 
     print('preprocessing dataset')
     train_feed, test_feed = dataset.celeba.feeds(
@@ -50,7 +52,7 @@ def run():
     output_dir = os.path.join('out', experiment_name)
     aegan.train(
         model, output_dir, train_feed, test_feed, n_epochs=250,
-        lr_start=0.025,
+        epoch_start=epoch_start, lr_start=0.025,
     )
     model_path = os.path.join(output_dir, 'arch.pickle')
     print('Saving model to disk')
